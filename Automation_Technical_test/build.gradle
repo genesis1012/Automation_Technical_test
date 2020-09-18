@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.91")
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: 'idea'
+
+mainClassName = 'App'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+ext{
+    serenityVersion = '2.0.91'
+    serenityCucumberVersion = '1.9.50'
+}
+
+dependencies {
+   
+    testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    testImplementation "com.browserstack:browserstack-local-java:1.0.2"
+    testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-screenplay-rest:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
+    compile "com.github.javafaker:javafaker:1.0.2"	
+	
+	testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.9.1'
+    testImplementation 'com.jcraft:jsch:0.1.54'
+
+    testImplementation 'org.slf4j:slf4j-simple:1.7.7'
+}
+
+
+
+gradle.startParameter.continueOnFailure = true
+
